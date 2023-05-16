@@ -1,0 +1,39 @@
+version: '3'
+services:
+  redis:
+    image: redis:latest
+    networks:
+      - course-net
+    ports:
+      - "6380:6379"
+    volumes:
+      - ./redis_data:/data
+    restart: always
+  mongodb:
+    image: mongo
+    networks:
+      - course-net
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongo_data:/data/db
+  db:
+    image: postgres:14.1-alpine
+    networks:
+      - course-net
+    restart: always
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=labs
+      - PGDATA=/var/lib/postgresql/data
+volumes:
+  db:
+    driver: local
+networks:
+  course-net: {}

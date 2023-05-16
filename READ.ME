@@ -1,0 +1,201 @@
+POST create:
+http://localhost:8080/api/mongo/student
+Request:
+{
+    "name": "Vit",
+    "group": "KH-22m",
+    "age": 45,
+    "course": "Computer sciense"
+}
+
+Response:
+{
+    "id": "644e869c07b9f571857076b4",
+    "name": "Vit",
+    "group": "KH-22m",
+    "age": 45,
+    "course": "Computer sciense"
+}
+
+GET view:
+http://localhost:8080/api/mongo/student?documentId=644e869c07b9f571857076b4
+
+Response:
+{
+    "name": "Vit",
+    "group": "KH-22m",
+    "age": 45,
+    "course": "Computer sciense"
+}
+
+PUT update:
+http://localhost:8080/api/mongo/student
+Request:
+{
+    "name": "Vitliy",
+    "group": "KH-22m",
+    "age": 45,
+    "course": "Computer sciense"
+}
+
+Response:
+{
+    "id": "644e869c07b9f571857076b4",
+    "name": "Vitliy",
+    "group": "KH-22m",
+    "age": 45,
+    "course": "Computer sciense"
+}
+DELETE:
+http://localhost:8080/api/mongo/student?documentId=644e869c07b9f571857076b4
+
+Response:
+{
+    "result": true
+}
+
+//////////////////////////////////////////REDIS////////////////////////////////////////////////////
+POST - create:
+http://localhost:8080/api/redis/employee
+Request:
+{
+    "key": 1,
+    "name": "Vitaliy",
+    "department": "Department IT",
+    "age": 45,
+    "salary": 150000.45
+}
+Response:
+{
+    "id": "edbcd97e-0bc9-4c43-b174-ea7634aa444d",
+    "name": "Vitaliy",
+    "department": "Department IT",
+    "age": 45,
+    "salary": 150000.45
+}
+
+PUT - update:
+http://localhost:8080/api/redis/employee?id=7e3be87d-4765-4ef0-8c25-b898b4c0bb26
+Request:
+{
+    "name": "Vitaliy",
+    "department": "Department 777777",
+    "age": 45,
+    "salary": 1600
+}
+Response:
+{
+    "id": "7e3be87d-4765-4ef0-8c25-b898b4c0bb26",
+    "name": "Vitaliy",
+    "department": "Department 777777",
+    "age": 45,
+    "salary": 1600.0
+}
+
+GET:
+http://localhost:8080/api/redis/employee?id=7e3be87d-4765-4ef0-8c25-b898b4c0bb26
+Response:
+{
+    "id": "7e3be87d-4765-4ef0-8c25-b898b4c0bb26",
+    "name": "Vitaliy",
+    "department": "Department 777777",
+    "age": 45,
+    "salary": 1600.0
+}
+
+DELETE:
+http://localhost:8080/api/redis/employee?id=7e3be87d-4765-4ef0-8c25-b898b4c0bb26
+Response:
+{
+    "result": true
+}
+----------------------------------------------------------------------------------------------
+PGSQL Documents
+----------------------------------------------------------------------------------------------
+POST - create:
+http://localhost:8080/api/pgsql/document
+Request:
+{
+    "name": "new document",
+    "body": "TEXT DOCUMENT",
+    "type": "VACATION",
+    "login": "login_boss"
+}
+Response:
+{
+    "name": "new document",
+    "type": "VACATION",
+    "body": "TEXT DOCUMENT",
+    "create_date": "2023-05-11T11:30:24.005+00:00",
+    "sign_date": null,
+    "login": "login_boss",
+    "id": 12
+}
+GET:
+http://localhost:8080/api/pgsql/document?id=12
+Response:
+{
+    "name": "new document",
+    "type": "VACATION",
+    "body": "TEXT DOCUMENT",
+    "create_date": "2023-05-11T11:30:24.005+00:00",
+    "sign_date": null,
+    "login": "login_boss",
+    "id": 12
+}
+
+PUT - update:
+http://localhost:8080/api/pgsql/document?id=12
+Request:
+{
+    "name": "new document new",
+    "body": "TEXT DOCUMENT NEW",
+    "type": "VACATION",
+    "login": "login_boss_ new",
+    "sign_date": "2023-05-11T11:28:01.934+00:00"
+}
+Response:
+{
+    "name": "new document new",
+    "type": "VACATION",
+    "body": "TEXT DOCUMENT NEW",
+    "create_date": "2023-05-11T12:18:09.862+00:00",
+    "sign_date": "2023-05-11T11:28:01.934+00:00",
+    "login": "login_boss_ new",
+    "id": 12
+}
+
+DELETE:
+http://localhost:8080/api/pgsql/document?id=1
+{
+    "result": true
+}
+
+------------------------------------------------------------------------------------------------------------------------
+SWAGGER: http://localhost:8080/swagger-ui/#/
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Exceptions
+------------------------------------------------------------------------------------------------------------------------
+http://localhost:8080/api/exception/execute?type=Illegal
+Response
+{
+    "message": "Unknown Error"
+}
+http://localhost:8080/api/exception/execute?type=OK
+{
+    "message": "OK"
+}
+http://localhost:8080/api/exception_new/execute/string?type=Illegal
+{
+    "message": "My Exception"
+}
+http://localhost:8080/api/exception_new/execute/string?type=SSS
+{
+    "message": "Exception"
+}
+http://localhost:8080/api/exception_new/execute/string?type=OK
+{
+    "message": "Hello"
+}
